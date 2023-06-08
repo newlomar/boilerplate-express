@@ -1,17 +1,16 @@
 let express = require('express');
 let app = express();
+require('dotenv').config()
 
-const staticPath = __dirname + "/public"
-app.use("/public", express.static(staticPath))
-
-app.get("/public", serveHTML)
-
-function serveHTML (req, res) {
-  const absolutePath = __dirname + "/views/index.html"
-
-  res.sendFile(absolutePath)
-}
-
+app.get("/json", function(req, res) {
+  const message_style = process.env.MESSAGE_STYLE
+  if (message_style === "uppercase") {
+    res.json({"message": "HELLO JSON"})
+  } else {
+    res.json({"message": "Hello json"})
+  }
+  
+})
 
 
 
