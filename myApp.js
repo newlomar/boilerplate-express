@@ -19,6 +19,10 @@ app.get("/:word/echo", function (req, res) {
   res.json({echo: req.params.word})
 })
 
+app.route("/name").get(function(req, res) {
+  res.json({name: `${req.query.first} ${req.query.last}`})
+})
+
 app.get("/json", function(req, res) {
   const message_style = process.env.MESSAGE_STYLE
   if (message_style === "uppercase") {
